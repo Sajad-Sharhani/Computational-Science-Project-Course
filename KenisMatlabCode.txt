@@ -1,0 +1,24 @@
+%% See also code at https://github.com/CSI-DT/MATLAB/tree/main/Basic
+
+data=readFAfile('FA_20191115T000000UTC.csv');
+%%
+%%Define the Individual and time
+ID=2417246; 
+%id, 2nd column from FA data
+starttime='15-Nov-2019 02:05:00';%GMT TIME. Sweden time need to be +2 hours
+endtime='15-Nov-2019 02:20:00';
+Individual_data=getIndividual(data,ID); 
+%Get the individual's data in the table
+individual_interval=getInterval(Individual_data, starttime, endtime);%Get the individual's data during the specific period
+%%
+figure(1),scatter(individual_interval.x,individual_interval.y)
+figure(2),plot(individual_interval.y)
+datawithspike=individual_interval.y;
+medianSignal = medfilt1(datawithspike, 40);
+diffSignal = abs(datawithspike - medianSignal);
+%plot(diffSignal)
+spikes = diffSignal > 200; 
+fixedSignal = datawithspike;
+fixedSignal(spikes) = medianSignal(spikes);
+figure(3),plot(fixedSignal)
+
