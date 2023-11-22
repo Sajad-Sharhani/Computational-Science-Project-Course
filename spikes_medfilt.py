@@ -143,7 +143,7 @@ def combined_plots(interval_data, fixed_signal, spikes, velocity_threshold, acc_
 
 
 def main():
-    filename = '/home/rabia/Current/CSProj/FA_20191115T000000UTC.csv'
+    filename = 'FA_20191115T000000UTC.csv'
     individual_id = 2417246
     start_time = '2019-11-15 02:05:00'
     end_time = '2019-11-15 02:20:00'
