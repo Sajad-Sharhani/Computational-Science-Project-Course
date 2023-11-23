@@ -59,14 +59,12 @@ def calculate_velocity(data):
     # Return the modified DataFrame with the new 'Velocity' column
     return data
 
-def calculate_acceleration(data):
-    # Step 1: Calculate absolute velocity difference
-    abs_velocity_diff = data['Velocity'].diff().abs()
-    # Step 2: Calculate acceleration using the absolute velocity difference
-    data['Acceleration'] = abs_velocity_diff / data['TimeDiff']
-    # Step 3: Fill NaN values with 0
+def calculate_acceleration(data): 
+    # Calculate acceleration using the velocity difference
+    data['Acceleration'] = data['Velocity'].diff() / data['TimeDiff']
+    # Fill NaN values with 0 which might occur for the first calculation
     data['Acceleration'] = data['Acceleration'].fillna(0)
-    # Step 4: Return the modified DataFrame with the 'Acceleration' column added
+    # Return the modified DataFrame with the 'Acceleration' column added
     print(data)
     return data
 
@@ -143,7 +141,7 @@ def combined_plots(interval_data, fixed_signal, spikes, velocity_threshold, acc_
 
 
 def main():
-    filename = 'FA_20191115T000000UTC.csv'
+    filename = '/home/rabia/Current/CSProj/FA_20191115T000000UTC.csv'
     individual_id = 2417246
     start_time = '2019-11-15 02:05:00'
     end_time = '2019-11-15 02:20:00'
