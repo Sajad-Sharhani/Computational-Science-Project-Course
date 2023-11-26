@@ -91,3 +91,30 @@
 ## Task Division
 
 - Sajad and Rabia: Both to review feedback and prepare for the upcoming meeting with Lars.
+
+# Week 4 (2023-11-24 to 2023-12-1)
+
+## Meetings
+
+- **Group Meeting**: Presented progress and results, received feedback from Lars.
+- **Upcoming Meeting with Moudud**: Scheduled for November 30th.
+
+## Tasks Completed
+
+- Analyzed 'FA_20191115T000000UTC.csv' for cow acceleration distributions.
+- Identified normal and abnormal cow acceleration patterns.
+
+## Next Steps
+
+- Incorporate feedback into our analysis and project approach,work on normal/abnormal angles, initiate working on report.
+- Prepare for the meeting with Moudud to discuss progress and next steps.
+
+## Issues
+
+- No new issues encountered.
+
+## Task Division
+
+- Sajad: Analyze given data on bigger scale, report and prepare upcoming meeting.
+- Rabia: normal/abnormal angles, report and prepare upcoming meeting.
+
