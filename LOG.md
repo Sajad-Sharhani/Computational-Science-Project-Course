@@ -118,3 +118,34 @@
 - Sajad: Analyze given data on bigger scale, report and prepare upcoming meeting.
 - Rabia: normal/abnormal angles, report and prepare upcoming meeting.
 
+# Week 5 (2023-12-1 to 2023-12-8)
+
+## Meetings
+
+- **Mandatory Lectures (3)**: Attended three mandatory lectures covering key aspects of the project.
+- **Group Meeting on Wednesday**: Presented our progress and received feedback.
+- **Meeting with Moudud on Thursday**: Discussed project details and received guidance.
+
+## Tasks Assigned
+
+- Sajad: Display the cleaned data on the barn and detect the stationary tags to remove them.
+- Rabia: Implement our solution on a larger data set.
+
+## Progress
+
+- Ongoing efforts to clean and refine the data set.
+- Preparations for implementing the solution on a larger scale.
+
+## Issues
+
+- No new issues encountered.
+
+## Next Steps
+
+- Enhance the data cleaning process to efficiently detect stationary tags.
+- Begin implementing the solution on a larger data set and analyze its effectiveness.
+
+## Task Division
+
+- Sajad: Focus on data cleaning and detection of stationary tags.
+- Rabia: Work on scaling up the solution to a larger data set.
