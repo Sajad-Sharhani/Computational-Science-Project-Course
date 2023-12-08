@@ -149,3 +149,32 @@
 
 - Sajad: Focus on data cleaning and detection of stationary tags.
 - Rabia: Work on scaling up the solution to a larger data set.
+
+# Week 6 (2023-12-8 to 2023-12-15)
+
+## Meetings
+
+- **Meeting with Stefan**: Oral Presentation and received feedback on Wednesday.
+
+## Tasks Completed
+
+- Tested and benchmarked our code on a larger data set.
+- Displayed our results on the barn.
+
+## Progress
+
+- Successfully executed and evaluated the code on an expanded data set.
+- Prepared and refined visuals for presentation on the barn.
+
+## Issues
+
+- No major issues encountered.
+
+## Next Steps
+
+- Start drafting the initial version of the project report.
+- Prepare for the upcoming group meeting with Lars on December 15th.
+
+## Task Division
+
+- Both team members: Collaborate on drafting the report and refining the presentation for the next group meeting.
