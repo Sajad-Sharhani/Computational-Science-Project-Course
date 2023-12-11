@@ -1,10 +1,10 @@
 #
-
+import time
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.signal import medfilt
 import numpy as np
-
+import math
 
 # Read and parse the CSV file, assigning proper column names
 def read_FA_file(filename):
@@ -66,6 +66,32 @@ def calculate_acceleration(data):
     data['Acceleration'] = data['Acceleration'].fillna(0)
     # Return the modified DataFrame with the 'Acceleration' column added
     return data
+
+def calculate_angular_observables(data):
+    try:
+        # Ensure there are at least two rows in the DataFrame
+        if len(data) < 2:
+            raise ValueError("Error: The DataFrame must have at least two rows.")
+
+        # Calculate slope
+        data['Slope'] = data['Y'].diff() / data['X'].diff()
+        data['Slope'] = data['Slope'].fillna(0)
+
+        # Calculate angle theta
+        data['Theta'] = data['Slope'].apply(lambda slope: math.atan(slope) if not math.isnan(slope) else None)
+        data['Theta'] = np.degrees(data['Theta'])
+        data['Theta'] = data['Theta'].fillna(0)
+        data['Cosine'] = data['Theta'].apply(lambda theta: math.cos(theta) if not math.isnan(theta) else None)
+        return data
+
+    except ZeroDivisionError:
+        # Handling the case where the denominator is zero (vertical line)
+        print("Error: Division by zero. The line is vertical, and slope is undefined.")
+        return None
+    except ValueError as e:
+        print(e)
+        return None
+
 
 def combined_plots(interval_data, fixed_signal, spikes, velocity_threshold, acc_threshold):
     # Set up a grid of plots with 2 rows and 3 columns
@@ -138,20 +164,60 @@ def combined_plots(interval_data, fixed_signal, spikes, velocity_threshold, acc_
     plt.tight_layout()
     plt.show()
 
+def theta_plots(interval_data):
+    # Set up a 1x2 grid of plots
+    fig, axs = plt.subplots(1, 2, figsize=(12, 4))
+
+    # Velocity distribution
+    axs[0].hist(interval_data['Theta'], bins=30, color='blue', alpha=0.7)
+    axs[0].set_title('Theta Distribution')
+    axs[0].set_xlabel('Theta')
+    axs[0].set_ylabel('Frequency')
+
+    axs[1].hist(interval_data['Cosine'], bins=30, color='blue', alpha=0.7)
+    axs[1].set_title('Cosine Distribution')
+    axs[1].set_xlabel('Cosine')
+    axs[1].set_ylabel('Frequency')
+
+    # Adjust layout for better spacing
+    plt.tight_layout()
+
+    # Display the plots
+    plt.show()
+
 
 def main():
-    filename = 'FA_20191115T000000UTC.csv'
+
+    filenames = [
+        'FA_20200919T000000UTC.csv',
+        'FA_20200920T000000UTC.csv',
+        'FA_20200921T000000UTC.csv',
+        'FA_20200922T000000UTC.csv',
+        'FA_20200923T000000UTC.csv',
+        'FA_20200924T000000UTC.csv',
+        'FA_20200925T000000UTC.csv',
+    ]
+
+    datafiles = []
+    for filename in filenames:
+        print(filename)
+        data = read_FA_file(filename)
+        datafiles.append(data)
+    
+    data = pd.concat(datafiles)
+
     individual_id = 2417246
     start_time = '2019-11-15 02:05:00'
-    end_time = '2019-11-15 02:20:00'
+    end_time = '2019-11-15 03:05:00'
     spike_threshold = 200
 
-    data = read_FA_file(filename)
+    #data = read_FA_file(filename)
     if data is not None:
         individual_data = get_individual(data, individual_id)
         interval_data = get_interval(individual_data, start_time, end_time)
         interval_data = calculate_velocity(interval_data)
         interval_data = calculate_acceleration(interval_data)
+        interval_data = calculate_angular_observables(interval_data)
         fixed_signal, spikes = remove_spikes_and_identify(interval_data['Y'], spike_threshold)
 
         # Ensure 'Velocity' column exists before trying to access it
@@ -166,6 +232,19 @@ def main():
 
         # Used the combined plot function here
         combined_plots(interval_data, fixed_signal, spikes, velocity_threshold, acceleration_threshold)
+        theta_plots(interval_data)
+
 if __name__ == "__main__":
+
+    # Record the start time
+    start_time = time.time()
+
     main()
 
+    # Record the end time
+    end_time = time.time()
+
+    # Calculate the elapsed time
+    elapsed_time = end_time - start_time
+
+    print(f'Time taken: {elapsed_time:.6f} seconds')
