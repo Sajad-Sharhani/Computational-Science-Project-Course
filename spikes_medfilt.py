@@ -189,13 +189,13 @@ def theta_plots(interval_data):
 def main():
     # 7 days data of cows
     filenames = [
-        '/home/rabia/Current/CSProj/FA_20200919T000000UTC.csv',
-        '/home/rabia/Current/CSProj/FA_20200920T000000UTC.csv',
-        '/home/rabia/Current/CSProj/FA_20200921T000000UTC.csv',
-        '/home/rabia/Current/CSProj/FA_20200922T000000UTC.csv',
-        '/home/rabia/Current/CSProj/FA_20200923T000000UTC.csv',
-        '/home/rabia/Current/CSProj/FA_20200924T000000UTC.csv',
-        '/home/rabia/Current/CSProj/FA_20200925T000000UTC.csv',
+        'FA_20200919T000000UTC.csv',
+        'FA_20200920T000000UTC.csv',
+        'FA_20200921T000000UTC.csv',
+        'FA_20200922T000000UTC.csv',
+        'FA_20200923T000000UTC.csv',
+        'FA_20200924T000000UTC.csv',
+        'FA_20200925T000000UTC.csv',
     ]
 
     datafiles = []
