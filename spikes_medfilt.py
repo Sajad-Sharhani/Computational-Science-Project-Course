@@ -198,6 +198,9 @@ def main():
         'FA_20200925T000000UTC.csv',
     ]
 
+    # 1 day data of cows
+    filenames = ['FA_20191115T000000UTC.csv']
+    
     datafiles = []
     for filename in filenames:
         print(filename)
@@ -206,15 +209,15 @@ def main():
     
     data = pd.concat(datafiles)
 
-    #individual_id = 2417246
-    start_time = '2020-11-15 02:05:00'
-    end_time = '2020-11-15 03:05:00'
+    individual_id = 2417246
+    start_time = '2019-11-15 02:05:00'
+    end_time = '2019-11-15 02:15:00'
     spike_threshold = 200
 
     
     if data is not None:
-        #individual_data = get_individual(data)
-        interval_data = get_interval(start_time, end_time)
+        individual_data = get_individual(data, individual_id)
+        interval_data = get_interval(individual_data, start_time, end_time)
         interval_data = calculate_velocity(interval_data)
         interval_data = calculate_acceleration(interval_data)
         interval_data = calculate_angular_observables(interval_data)
